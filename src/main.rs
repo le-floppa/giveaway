@@ -16,8 +16,8 @@ impl EventHandler for Handler {
         // Register application commands (blacklist) on startup
     }
 
-    async fn interaction_create(&self, ctx: Context, interaction: Interaction) {
-        if let Interaction::Command(command) = interaction {
+    async fn interaction_create(&self, _ctx: Context, interaction: Interaction) {
+        if let Interaction::Command(_command) = interaction {
             // command doer
         }
     }
