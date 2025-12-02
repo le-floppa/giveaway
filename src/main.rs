@@ -45,13 +45,16 @@ impl EventHandler for Handler {
 async fn main() {
     dotenv::dotenv().ok();
 
-    let token = match env::var("TOKEN") {
-        Ok(t) => t,
-        Err(_) => {
-            eprintln!("Please set the DISCORD_TOKEN environment variable or add it to a .env file.");
+    // onlne goer
+    let token = env::var("TOKEN")
+        .or_else(|_| env::var("DISCORD_TOKEN"))
+        .map(|t| t.trim().trim_matches('"').to_string())
+        .unwrap_or_else(|_| {
+            eprintln!(
+                "Please set the TOKEN or DISCORD_TOKEN environment variable or add it to a .env file."
+            );
             std::process::exit(1);
-        }
-    };
+        });
 
     let intents = GatewayIntents::GUILDS | GatewayIntents::GUILD_MESSAGES | GatewayIntents::MESSAGE_CONTENT;
 
