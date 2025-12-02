@@ -67,3 +67,22 @@ This project is licensed under the "Please Don't Sue Me" license.
 *If you've actually read this entire README, you deserve a giveaway. Unfortunately, we haven't figured out how to do that yet.*
 
 *Star this repo anyway. It feeds our ego.* ⭐
+Welcome to the most mysterious giveaway repository on the internet!
+
+## What is this?
+
+Honestly, we're not entirely sure either. But surely it does *something*. 🤷
+
+## A Joke for You
+
+Why do programmers prefer dark mode?
+
+> Because light attracts bugs! 🐛💡
+
+## Status
+
+🚧 Under construction... or maybe just under confusion. Stay tuned!
+
+---
+
+*Made with ❤️ and a healthy dose of uncertainty*
