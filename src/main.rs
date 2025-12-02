@@ -1,8 +1,10 @@
 use serenity::async_trait;
 use serenity::model::gateway::Ready;
-use serenity::model::prelude::Message;
+use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::env;
+
+mod commands;
 
 struct Handler;
 
@@ -10,6 +12,14 @@ struct Handler;
 impl EventHandler for Handler {
     async fn ready(&self, _ctx: Context, ready: Ready) {
         println!("{} is connected!", ready.user.name);
+
+        // Register application commands (blacklist) on startup
+    }
+
+    async fn interaction_create(&self, ctx: Context, interaction: Interaction) {
+        if let Interaction::Command(command) = interaction {
+            // command doer
+        }
     }
 
     async fn message(&self, ctx: Context, msg: Message) {
@@ -19,6 +29,12 @@ impl EventHandler for Handler {
 
         if msg.content == "!ping" {
             if let Err(e) = msg.channel_id.say(&ctx.http, "Pong!").await {
+                println!("Error sending message: {:?}", e);
+            }
+        }
+
+        if msg.content == "sybau" {
+            if let Err(e) = msg.channel_id.say(&ctx.http, "bro sybau urself u suck lol").await {
                 println!("Error sending message: {:?}", e);
             }
         }
