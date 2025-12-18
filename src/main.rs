@@ -14,31 +14,17 @@ impl EventHandler for Handler {
         println!("{} is connected!", ready.user.name);
 
         // Register application commands (blacklist) on startup
+        commands::test::register_test_command(&_ctx).await;
     }
 
     async fn interaction_create(&self, _ctx: Context, interaction: Interaction) {
         if let Interaction::Command(_command) = interaction {
             // command doer
+            commands::test::handle_test_command(&_ctx, _command).await;
         }
     }
 
-    async fn message(&self, ctx: Context, msg: Message) {
-        if msg.author.bot {
-            return;
-        }
 
-        if msg.content == "!ping" {
-            if let Err(e) = msg.channel_id.say(&ctx.http, "Pong!").await {
-                println!("Error sending message: {:?}", e);
-            }
-        }
-
-        if msg.content == "sybau" {
-            if let Err(e) = msg.channel_id.say(&ctx.http, "bro sybau urself u suck lol").await {
-                println!("Error sending message: {:?}", e);
-            }
-        }
-    }
 }
 
 #[tokio::main]
